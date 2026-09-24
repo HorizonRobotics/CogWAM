@@ -1,0 +1,46 @@
+# --- Internal-only files: never publish (see notes in the commit that added this) ---
+# Audit trail for checkpoint/video identification; contains absolute internal paths.
+INTERNAL_source_map_*.json
+PHASE2_EVIDENCE.md
+# Build helper with hard-coded internal storage paths.
+build_robodojo_manifest.py
+# Internal handover/deployment notes.
+DEPLOY.md
+
+# --- Credentials / secrets ---
+.env
+.env.*
+*.pem
+*.key
+*.p12
+id_rsa*
+.netrc
+.git-credentials
+
+# --- Dependencies / build output ---
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+.vite/
+.next/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- Temp ---
+*.log
+*.tmp
+*~

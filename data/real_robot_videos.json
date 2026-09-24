@@ -1,0 +1,132 @@
+[
+  {
+    "task": "block_sorting",
+    "task_label": "Block Sorting",
+    "setting": "Basic",
+    "caption": "Successful precision block sort.",
+    "success": true,
+    "duration_s": 54.2,
+    "web_path": "assets/videos/real/block_sorting_1_success_mp4.mp4",
+    "poster_path": "assets/posters/real/block_sorting_1_success_mp4.jpg"
+  },
+  {
+    "task": "block_sorting",
+    "task_label": "Block Sorting",
+    "setting": "Basic",
+    "caption": "A failure case -- Block Sorting is the hardest of the six basic tasks (5/20 in the paper).",
+    "success": false,
+    "duration_s": 86.8,
+    "web_path": "assets/videos/real/block_sorting_2_failed_mp4.mp4",
+    "poster_path": "assets/posters/real/block_sorting_2_failed_mp4.jpg"
+  },
+  {
+    "task": "fill_pen_holder",
+    "task_label": "Fill Pen Holder",
+    "setting": "Basic",
+    "caption": "Put the pen into the white pen holder.",
+    "success": true,
+    "duration_s": 76.8,
+    "web_path": "assets/videos/real/fill_pen_holder_1_put_the_pen_into_the_white_pen_holder_mp4.mp4",
+    "poster_path": "assets/posters/real/fill_pen_holder_1_put_the_pen_into_the_white_pen_holder_mp4.jpg"
+  },
+  {
+    "task": "fill_pen_holder",
+    "task_label": "Fill Pen Holder",
+    "setting": "Generalization",
+    "caption": "Grey pen holder, under a spatial-location position disturbance.",
+    "success": true,
+    "duration_s": 54.1,
+    "web_path": "assets/videos/real/fill_pen_holder_2_put_the_pen_into_the_grey_pen_holder_position_disturbance_mp4.mp4",
+    "poster_path": "assets/posters/real/fill_pen_holder_2_put_the_pen_into_the_grey_pen_holder_position_disturbance_mp4.jpg"
+  },
+  {
+    "task": "fill_pen_holder",
+    "task_label": "Fill Pen Holder",
+    "setting": "Generalization",
+    "caption": "Brown pen holder, with a distractor object added to the scene.",
+    "success": true,
+    "duration_s": 48.8,
+    "web_path": "assets/videos/real/fill_pen_holder_3_put_the_pen_into_the_brown_pen_holder_distractor_mp4.mp4",
+    "poster_path": "assets/posters/real/fill_pen_holder_3_put_the_pen_into_the_brown_pen_holder_distractor_mp4.jpg"
+  },
+  {
+    "task": "organize_utensils",
+    "task_label": "Organize Utensils",
+    "setting": "Basic",
+    "caption": "Category-level utensil organization.",
+    "success": true,
+    "duration_s": 66.2,
+    "web_path": "assets/videos/real/organize_utensils_mp4.mp4",
+    "poster_path": "assets/posters/real/organize_utensils_mp4.jpg"
+  },
+  {
+    "task": "place_objects",
+    "task_label": "Place Objects",
+    "setting": "Basic",
+    "caption": "Repeated pick-and-place onto a target plate.",
+    "success": true,
+    "duration_s": 44.4,
+    "web_path": "assets/videos/real/place_objects_1_mp4.mp4",
+    "poster_path": "assets/posters/real/place_objects_1_mp4.jpg"
+  },
+  {
+    "task": "place_objects",
+    "task_label": "Place Objects",
+    "setting": "Generalization",
+    "caption": "Place Objects under object-appearance generalization.",
+    "success": true,
+    "duration_s": 93.2,
+    "web_path": "assets/videos/real/place_objects_2_g_mp4.mp4",
+    "poster_path": "assets/posters/real/place_objects_2_g_mp4.jpg"
+  },
+  {
+    "task": "place_in_bag",
+    "task_label": "Place in Bag",
+    "setting": "Basic",
+    "caption": "Long-horizon bimanual bagging sequence.",
+    "success": true,
+    "duration_s": 241.7,
+    "web_path": "assets/videos/real/place_in_bag_1_mp4.mp4",
+    "poster_path": "assets/posters/real/place_in_bag_1_mp4.jpg"
+  },
+  {
+    "task": "place_in_bag",
+    "task_label": "Place in Bag",
+    "setting": "Basic",
+    "caption": "A second Place in Bag rollout.",
+    "success": true,
+    "duration_s": 168.5,
+    "web_path": "assets/videos/real/place_in_bag_2_mp4.mp4",
+    "poster_path": "assets/posters/real/place_in_bag_2_mp4.jpg"
+  },
+  {
+    "task": "place_in_bag",
+    "task_label": "Place in Bag",
+    "setting": "Basic",
+    "caption": "A failure case on Place in Bag.",
+    "success": false,
+    "duration_s": 184.4,
+    "web_path": "assets/videos/real/place_in_bag_3_f_mp4.mp4",
+    "poster_path": "assets/posters/real/place_in_bag_3_f_mp4.jpg"
+  },
+  {
+    "task": "put_in_drawer",
+    "task_label": "Put in Drawer",
+    "setting": "Basic",
+    "caption": "Articulated-drawer interaction.",
+    "success": true,
+    "duration_s": 77.3,
+    "web_path": "assets/videos/real/put_in_drawer_1_mp4.mp4",
+    "poster_path": "assets/posters/real/put_in_drawer_1_mp4.jpg"
+  },
+  {
+    "task": "put_in_drawer",
+    "task_label": "Put in Drawer",
+    "setting": "Basic",
+    "caption": "A second Put in Drawer rollout.",
+    "success": true,
+    "duration_s": 121.5,
+    "web_path": "assets/videos/real/put_in_drawer_2_mp4.mp4",
+    "poster_path": "assets/posters/real/put_in_drawer_2_mp4.jpg"
+  }
+]

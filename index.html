@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CogWAM — Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces</title>
+<meta name="description" content="CogWAM couples a persistent Semantic State with progress-conditioned World and Action queries for long-horizon robot manipulation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<!--
+  SITE CONFIG.
+  repoUrl / arxivUrl: still null — the training code and the paper are not
+  public yet. The page renders "Coming Soon" for either one that is null;
+  do not put a placeholder URL here "to make the button work".
+  modelUrl: the released checkpoint on Hugging Face.
+-->
+<script>
+  window.COGWAM_SITE_CONFIG = {
+    repoUrl: null,
+    arxivUrl: null,
+    modelUrl: "https://huggingface.co/HorizonRobotics/CogWAM",
+  };
+</script>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-brand">CogWAM</div>
+    <div class="nav-links">
+      <a href="#idea">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#real-robot">Real Robot</a>
+      <a href="#robodojo">RoboDojo</a>
+      <a href="#results">Results</a>
+      <a href="#citation">Citation</a>
+    </div>
+    <div class="nav-actions" id="nav-actions"></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <h1 class="hero-title"><span class="accent">CogWAM:</span> Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces</h1>
+    <p class="hero-subtitle">A persistent Semantic State that a robot policy rewrites only when the task actually moves on — not on a fixed clock, and not by re-planning from scratch every step.</p>
+
+    <div class="hero-authors">
+      Sen&nbsp;Wang<sup>1,2</sup>, Liu&nbsp;Liu<sup>2,‡</sup>, Xinjiang&nbsp;Wang<sup>2</sup>, Zequn&nbsp;Chen<sup>2</sup>, Haoyi&nbsp;Jiang<sup>3</sup>,
+      Taojun&nbsp;Ding<sup>2</sup>, Tingyang&nbsp;Xiao<sup>2</sup>, Zhizhong&nbsp;Su<sup>2,✉</sup>, Jie&nbsp;Wang<sup>4</sup>, Sanping&nbsp;Zhou<sup>1,✉</sup>
+    </div>
+    <div class="hero-legend"><sup>‡</sup>&nbsp;Project Lead &middot; <sup>✉</sup>&nbsp;Corresponding Authors</div>
+    <div class="hero-affiliations">
+      <sup>1</sup>Xi'an Jiaotong University &middot;
+      <sup>2</sup>Horizon Robotics &middot;
+      <sup>3</sup>Huazhong University of Science and Technology &middot;
+      <sup>4</sup>University of Science and Technology of China
+    </div>
+
+    <div class="hero-actions" id="hero-actions"></div>
+  </div>
+
+  <div class="wrap">
+    <figure class="hero-figure">
+      <img src="assets/figures/fig1.png" alt="CogWAM overview: event-triggered semantic-state updates, the execution loop, and headline results on RoboDojo, BiCoord, and real-world deployment.">
+      <figcaption>Event-triggered Semantic State updates avoid both the redundant recomputation of synchronous updating and the staleness of periodic asynchronous updating, and translate into consistent gains across simulation and real-world deployment.</figcaption>
+    </figure>
+
+    <div class="hero-clips" id="hero-clips"></div>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-index">01 / Idea</div>
+      <h2 class="section-title">What is CogWAM?</h2>
+    </div>
+    <p class="idea-statement">
+      Long-horizon manipulation needs more than the current camera frame: a policy has to
+      remember what it already finished and what it is doing now. CogWAM keeps that as an
+      explicit, persistent <strong>Semantic State</strong> — completed events plus the active
+      subtask — and updates it only when a lightweight <strong>KEEP / UPDATE</strong> decision
+      says the task has actually moved on. That state conditions two query streams, WORLD and
+      ACTION, that share one backbone but specialize toward future-latent prediction and control
+      respectively. Future prediction is a training-time objective only: at inference the World
+      stream is dropped, and actions are generated directly from the observation and the
+      maintained Semantic State — not from an imagined future.
+    </p>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-index">02 / Method</div>
+      <h2 class="section-title">Event-driven semantic interface</h2>
+      <p class="section-lede">
+        A five-minute tour of the two mechanisms that make the Semantic State useful:
+        how it decides when to change, and how it reaches the physical model.
+      </p>
+    </div>
+
+    <figure class="method-figure">
+      <img src="assets/figures/fig2.png" alt="CogWAM architecture: event-driven semantic planning producing a persistent Semantic State, which conditions World and Action queries inside a shared multi-modal self-attention backbone.">
+      <figcaption>Figure 1. CogWAM architecture. Left: the Semantic State is read from the previous step, and a KEEP/UPDATE decision determines whether it advances. Right: WORLD and ACTION queries condition on the same Semantic State and current DINO features but attend through separate cross-attention and FFN blocks — future-latent prediction is a training-time branch only.</figcaption>
+    </figure>
+
+    <div class="mechanisms">
+      <div class="mechanism">
+        <h3>Event-Triggered Semantic State</h3>
+        <p>
+          At every replanning step the model predicts KEEP or UPDATE from a single forward pass.
+          KEEP costs nothing further. UPDATE additionally generates a memory increment and the new
+          active subtask, autoregressively, and only then. The state can persist across many
+          action chunks — it changes when the task does, not on a fixed clock.
+        </p>
+      </div>
+      <div class="mechanism">
+        <h3>Progress-Conditioned World &amp; Action Queries</h3>
+        <p>
+          Two learnable query sets are appended after the observation, instruction, and Semantic
+          State in one causal sequence. Both read the same task-progress context, but their
+          hidden states are routed to different objectives — WORLD toward future multi-view DINO
+          latents, ACTION toward the control chunk — so the two branches share semantics while
+          keeping objective-specific representations.
+        </p>
+      </div>
+      <div class="mechanism">
+        <h3>Boundary-Aware Training</h3>
+        <p>
+          Semantic transitions are rare, so training oversamples UPDATE events and the
+          near-boundary "hard KEEP" cases that look almost like a transition. A scheduled
+          probability also swaps in the model's own predicted state during training, closing the
+          gap to closed-loop inference where the annotated state is never available.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="real-robot">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-index">03 / Real Robot</div>
+      <h2 class="section-title">Real-world deployment</h2>
+      <p class="section-lede">
+        Six multi-stage tabletop tasks on a dual-arm setup, plus four controlled distribution
+        shifts, evaluated closed-loop.
+      </p>
+    </div>
+
+    <figure class="context-figure">
+      <img src="assets/figures/fig_real.png" alt="Real-world setup: dual-arm AgileX PIPER platform with head-mounted and wrist-mounted RealSense D435 cameras, and the six basic tasks plus four generalization settings.">
+      <figcaption>Real-world setup: a dual-arm AgileX PIPER platform with two 6-DoF manipulators and parallel grippers, using synchronized RGB from one head-mounted and two wrist-mounted Intel RealSense D435 cameras. Six basic tasks (top) and four generalization settings — spatial location, object appearance, distractors, novel objects (bottom-right pair shown for two tasks).</figcaption>
+    </figure>
+
+    <div class="checkpoint-badge">
+      Setup: PiPER dual-arm &middot; head + 2&times; wrist RealSense D435 &middot; closed-loop control
+    </div>
+
+    <div class="library-controls">
+      <select id="real-task-select"></select>
+      <div class="library-dims" id="real-setting-filter"></div>
+    </div>
+
+    <div class="library-stage">
+      <div class="video-frame wide">
+        <video id="real-library-video" muted loop playsinline preload="metadata" controls></video>
+      </div>
+      <div class="library-info">
+        <dl id="real-library-meta"></dl>
+      </div>
+    </div>
+
+    <div class="library-strip" id="real-library-strip"></div>
+  </div>
+</section>
+
+<section id="robodojo">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-index">04 / RoboDojo</div>
+      <h2 class="section-title">Simulation rollouts</h2>
+      <p class="section-lede">
+        RoboDojo evaluates 42 tasks across five capability dimensions. Clips below are real
+        rollouts of the checkpoint below — not cherry-picked renders.
+      </p>
+    </div>
+
+    <div class="checkpoint-badge">
+      Checkpoint: dino_multilayer_50k &middot; step 50,000 &middot; no prior robot-data pre-training
+    </div>
+
+    <div class="library-controls">
+      <select id="task-select"></select>
+      <div class="library-dims" id="dim-filter"></div>
+    </div>
+
+    <div class="library-stage">
+      <div class="video-frame">
+        <video id="library-video" muted loop playsinline preload="metadata" controls></video>
+      </div>
+      <div class="library-info">
+        <dl id="library-meta"></dl>
+      </div>
+    </div>
+
+    <div class="library-strip" id="library-strip"></div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-index">05 / Results</div>
+      <h2 class="section-title">Reported results</h2>
+      <p class="section-lede">
+        Numbers below are exactly as reported in the paper. CogWAM uses no prior
+        embodied robot-data pre-training in any of these tables.
+      </p>
+    </div>
+
+    <div class="results-block">
+      <h3>RoboDojo — multi-task evaluation</h3>
+      <p class="results-note">Each cell is Score / Success Rate (%), averaged over five capability dimensions.</p>
+      <div class="table-scroll">
+        <table class="result-table" id="table-robodojo"></table>
+      </div>
+    </div>
+
+    <div class="results-block">
+      <h3>BiCoord — long-horizon bimanual manipulation</h3>
+      <p class="results-note">Six of 18 tasks with the longest expert trajectories are shown; Average is over all 18. Each cell is Stage-wise Success Rate / Success Rate (%).</p>
+      <div class="table-scroll">
+        <table class="result-table" id="table-bicoord"></table>
+      </div>
+    </div>
+
+    <div class="results-block">
+      <h3>Real-world evaluation</h3>
+      <p class="results-note">Success counts, 20 trials per basic task (120 total) and 30 trials per generalization dimension across all six tasks (120 total).</p>
+      <div class="table-scroll">
+        <table class="result-table" id="table-realworld"></table>
+      </div>
+    </div>
+
+    <div class="results-block">
+      <h3>Semantic State update strategy — deployment cost</h3>
+      <p class="results-note">Measured on the real robot at a 30&nbsp;Hz control loop with a 333&nbsp;ms replanning budget (NVIDIA RTX 5090).</p>
+      <div class="table-scroll">
+        <table class="result-table" id="table-update-strategy"></table>
+      </div>
+
+      <div class="ablation-figure">
+        <img src="assets/figures/semantic_update.png" alt="Ablation: w/o Semantic Update vs Synchronous vs Periodic Async vs KEEP/UPDATE, on RoboDojo Long-Horizon/Memory and on BiCoord.">
+        <figcaption>Effect of the Semantic State and its update strategy on RoboDojo (Long-Horizon, Memory) and BiCoord (18-task average). KEEP/UPDATE is CogWAM's event-triggered strategy.</figcaption>
+      </div>
+    </div>
+
+    <div class="scope-note">
+      This project page reports results for the RoboDojo, BiCoord, and real-world experiments
+      exactly as printed in the paper. It does not re-aggregate or re-score any rollout, and does
+      not present any number the paper does not report.
+    </div>
+  </div>
+</section>
+
+<section id="citation">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-index">06 / Citation</div>
+      <h2 class="section-title">Citation</h2>
+    </div>
+    <div class="citation-block">
+      <pre class="bibtex" id="bibtex-block">@misc{wang2026cogwam,
+  title  = {CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces},
+  author = {Wang, Sen and Liu, Liu and Wang, Xinjiang and Chen, Zequn and Jiang, Haoyi and
+            Ding, Taojun and Xiao, Tingyang and Su, Zhizhong and Wang, Jie and Zhou, Sanping},
+  year   = {2026},
+  note   = {Preprint. arXiv identifier to follow.}
+}</pre>
+      <button class="btn copy-btn" id="copy-bibtex">Copy BibTeX</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>CogWAM &middot; 2026</div>
+    <div class="foot-links" id="footer-links"></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
