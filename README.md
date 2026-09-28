@@ -3,7 +3,7 @@
 Project page for **CogWAM: Aligning Semantic Cognition with World Action Modeling
 via Event-Driven Interfaces**.
 
-**Live site:** https://sanmumumu.github.io/CogWAM/
+**Live site:** https://horizonrobotics.github.io/CogWAM/
 
 | Resource | Status |
 | --- | --- |
@@ -43,12 +43,12 @@ python3 -m http.server 8000
 
 ## Deployment (GitHub Pages)
 
-The site is served directly from the default branch, no Actions build required:
+The site is served directly from the `gh-pages` branch, no Actions build required:
 
-**Settings → Pages → Source: "Deploy from a branch" → Branch: `main` / `/ (root)`**
+**Settings → Pages → Source: "Deploy from a branch" → Branch: `gh-pages` / `/ (root)`**
 
-Published at https://sanmumumu.github.io/CogWAM/ a minute or two after each push
-to `main`.
+Published at https://horizonrobotics.github.io/CogWAM/ a minute or two after each push
+to `gh-pages`.
 
 ## Updating the video galleries
 
