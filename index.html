@@ -16,15 +16,13 @@
 
 <!--
   SITE CONFIG.
-  repoUrl / arxivUrl: still null — the training code and the paper are not
-  public yet. The page renders "Coming Soon" for either one that is null;
-  do not put a placeholder URL here "to make the button work".
-  modelUrl: the released checkpoint on Hugging Face.
+  repoUrl / arxivUrl: now public — the paper is on arXiv and the code is
+  released. modelUrl: the released checkpoint on Hugging Face.
 -->
 <script>
   window.COGWAM_SITE_CONFIG = {
-    repoUrl: null,
-    arxivUrl: null,
+    repoUrl: "https://github.com/HorizonRobotics/CogWAM",
+    arxivUrl: "https://www.arxiv.org/pdf/2609.37721",
     modelUrl: "https://huggingface.co/HorizonRobotics/CogWAM",
   };
 </script>
@@ -277,12 +275,11 @@
       <h2 class="section-title">Citation</h2>
     </div>
     <div class="citation-block">
-      <pre class="bibtex" id="bibtex-block">@misc{wang2026cogwam,
-  title  = {CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces},
-  author = {Wang, Sen and Liu, Liu and Wang, Xinjiang and Chen, Zequn and Jiang, Haoyi and
-            Ding, Taojun and Xiao, Tingyang and Su, Zhizhong and Wang, Jie and Zhou, Sanping},
-  year   = {2026},
-  note   = {Preprint. arXiv identifier to follow.}
+      <pre class="bibtex" id="bibtex-block">@article{wang2026cogwam,
+  title={CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces},
+  author={Wang, Sen and Liu, Liu and Wang, Xinjiang and Chen, Zequn and Jiang, Haoyi and Ding, Taojun and Xiao, Tingyang and Su, Zhizhong and Wang, Jie and Zhou, Sanping},
+  journal={arXiv preprint arXiv:2609.37721},
+  year={2026}
 }</pre>
       <button class="btn copy-btn" id="copy-bibtex">Copy BibTeX</button>
     </div>
