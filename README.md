@@ -2,9 +2,16 @@
 <h1>CogWAM</h1>
 <p><b>Cognition-Guided World-Action Model with a Persistent Semantic State</b></p>
 
-<a href="#-citation"><img src="https://img.shields.io/badge/PDF-arXiv-red?logo=arxiv" alt="Paper"></a>
+<a href="https://horizonrobotics.github.io/CogWAM/"><img src="https://img.shields.io/badge/Project-Page-blue" alt="Project Page"></a>
+<a href="https://www.arxiv.org/pdf/2609.37721"><img src="https://img.shields.io/badge/PDF-arXiv-red?logo=arxiv" alt="Paper"></a>
 <a href="#-released-checkpoint"><img src="https://img.shields.io/badge/Model-HuggingFace-yellow?logo=huggingface" alt="Model"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green" alt="License"></a>
+
+<p>
+<a href="https://horizonrobotics.github.io/CogWAM/"><b>🌐 Project Page</b></a> &nbsp;·&nbsp;
+<a href="https://www.arxiv.org/pdf/2609.37721"><b>📄 Paper</b></a> &nbsp;·&nbsp;
+<a href="https://huggingface.co/HorizonRobotics/CogWAM"><b>🤗 Model</b></a>
+</p>
 </div>
 
 ## 📖 Abstract
@@ -291,10 +298,11 @@ RoboDojo; the real-robot stack, its data and its checkpoints are separate.
 ## 📚 Citation
 
 ```bibtex
-@inproceedings{cogwam,
-  title     = {CogWAM: Cognition-Guided World-Action Modeling with a Persistent Semantic State},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2027}
+@article{wang2026cogwam,
+  title={CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces},
+  author={Wang, Sen and Liu, Liu and Wang, Xinjiang and Chen, Zequn and Jiang, Haoyi and Ding, Taojun and Xiao, Tingyang and Su, Zhizhong and Wang, Jie and Zhou, Sanping},
+  journal={arXiv preprint arXiv:2609.37721},
+  year={2026}
 }
 ```
 

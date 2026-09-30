@@ -1,0 +1,78 @@
+cff-version: 1.2.0
+title: "CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces"
+message: "If you use this software, please cite the paper below."
+type: software
+authors:
+  - family-names: Wang
+    given-names: Sen
+  - family-names: Liu
+    given-names: Liu
+  - family-names: Wang
+    given-names: Xinjiang
+  - family-names: Chen
+    given-names: Zequn
+  - family-names: Jiang
+    given-names: Haoyi
+  - family-names: Ding
+    given-names: Taojun
+  - family-names: Xiao
+    given-names: Tingyang
+  - family-names: Su
+    given-names: Zhizhong
+  - family-names: Wang
+    given-names: Jie
+  - family-names: Zhou
+    given-names: Sanping
+preferred-citation:
+  type: article
+  title: "CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces"
+  authors:
+    - family-names: Wang
+      given-names: Sen
+    - family-names: Liu
+      given-names: Liu
+    - family-names: Wang
+      given-names: Xinjiang
+    - family-names: Chen
+      given-names: Zequn
+    - family-names: Jiang
+      given-names: Haoyi
+    - family-names: Ding
+      given-names: Taojun
+    - family-names: Xiao
+      given-names: Tingyang
+    - family-names: Su
+      given-names: Zhizhong
+    - family-names: Wang
+      given-names: Jie
+    - family-names: Zhou
+      given-names: Sanping
+  journal: "arXiv preprint arXiv:2609.37721"
+  year: 2026
+  url: "https://www.arxiv.org/pdf/2609.37721"
+abstract: >-
+  CogWAM couples a vision-language backbone to a dual-width mixture-of-transformers
+  that jointly denoises a future visual latent and an action chunk, conditioned on
+  an event-driven semantic memory that is refreshed by an explicit KEEP/UPDATE
+  decision rather than on every step.
+keywords:
+  - vision-language-action
+  - world-model
+  - robot-learning
+  - semantic-memory
+  - robodojo
+license: MIT
+version: 0.1.0
+references:
+  - type: software
+    title: "StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing"
+    authors:
+      - name: starVLA Community
+    repository-code: "https://github.com/starVLA/starVLA"
+    license: MIT
+    notes: CogWAM is derived from the StarVLA codebase.
+  - type: software
+    title: "RoboDojo: a robot simulation benchmark"
+    repository-code: "https://github.com/RoboDojo-Benchmark/RoboDojo"
+    version: 0.2.0
+    notes: Evaluation benchmark used for all reported numbers.
