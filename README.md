@@ -1,6 +1,6 @@
 <div align="center">
 <h1>CogWAM</h1>
-<p><b>Cognition-Guided World-Action Model with a Persistent Semantic State</b></p>
+<p><b>Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces</b></p>
 
 <a href="https://horizonrobotics.github.io/CogWAM/"><b>🌐 Project Page</b></a> &nbsp;·&nbsp;
 <a href="https://www.arxiv.org/pdf/2609.37721"><b>📄 Paper</b></a> &nbsp;·&nbsp;
