@@ -117,7 +117,7 @@ a:hover { text-decoration: underline; }
 .pill:hover {
   background: var(--accent-soft);
   border-color: var(--accent-soft);
-  color: var(--accent-dark);
+  color: #2c5d7d;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(63, 127, 165, 0.16);
 }
@@ -139,7 +139,7 @@ a:hover { text-decoration: underline; }
 .pill.primary {
   background: var(--accent-soft);
   border-color: var(--accent-soft);
-  color: var(--accent-dark);
+  color: #2c5d7d;
 }
 
 .pill.primary:hover {
@@ -283,22 +283,25 @@ section:nth-of-type(even) {
 
 .hero-btn:hover { text-decoration: none; transform: translateY(-2px); }
 
-.hero-btn.dark { background: var(--text); color: #fff; }
-.hero-btn.dark:hover { background: #0f1720; box-shadow: 0 8px 18px rgba(15, 23, 32, 0.28); }
+/* Primary action — the one button that carries the page's main intent.
+   #35688a rather than --accent-dark: white on --accent-dark is only 4.38:1,
+   under the 4.5:1 AA floor for 14px text. This is 6.00:1. */
+.hero-btn.primary { background: #35688a; color: #fff; }
+.hero-btn.primary:hover { background: #2c5d7d; box-shadow: 0 8px 18px rgba(63, 127, 165, 0.28); }
 
-.hero-btn.accent { background: var(--accent-dark); color: #fff; }
-.hero-btn.accent:hover { background: #35688a; box-shadow: 0 8px 18px rgba(63, 127, 165, 0.32); }
-
-.hero-btn.outline {
-  background: var(--surface);
-  border-color: var(--border);
-  color: var(--text);
-}
-.hero-btn.outline:hover {
+/* Secondary actions — same hue, lighter weight. No hard border: the tint
+   alone separates them from the page, which keeps the row calm. Text is
+   #2c5d7d (5.86:1 on the soft tint), not --accent-dark, for the same reason. */
+.hero-btn.tonal {
   background: var(--accent-soft);
-  border-color: var(--accent-soft);
-  color: var(--accent-dark);
-  box-shadow: 0 8px 18px rgba(63, 127, 165, 0.16);
+  border-color: transparent;
+  color: #2c5d7d;
+}
+.hero-btn.tonal:hover {
+  background: #c9e4f2;
+  border-color: transparent;
+  color: #24506c;
+  box-shadow: 0 8px 18px rgba(63, 127, 165, 0.18);
 }
 
 .hero-btn.disabled {

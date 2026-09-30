@@ -51,10 +51,10 @@
     }
     if (heroActions) {
       heroActions.innerHTML = [
-        heroPill("paper", "Paper", CFG.arxivUrl, { style: "dark" }),
-        heroPill("code", "Code", CFG.repoUrl, { style: "accent" }),
-        heroPill("model", "Model", CFG.modelUrl, { style: "outline" }),
-        heroPill("quote", "BibTeX", null, { style: "outline", scrollTo: "#citation" }),
+        heroPill("paper", "Paper", CFG.arxivUrl, { style: "primary" }),
+        heroPill("code", "Code", CFG.repoUrl, { style: "tonal" }),
+        heroPill("model", "Model", CFG.modelUrl, { style: "tonal" }),
+        heroPill("quote", "BibTeX", null, { style: "tonal", scrollTo: "#citation" }),
       ].join("");
     }
     if (footerLinks) {
