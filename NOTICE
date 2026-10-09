@@ -1,0 +1,57 @@
+THIRD_PARTY_NOTICES
+
+CogWAM, Copyright (c) 2026 Beijing Horizon Information Technology Co., Ltd.
+
+Unless otherwise specified, all original source code in this repository is licensed under the MIT License.
+Third-party components and modifications thereof retain their original licenses. See below for the list of third-party projects.
+
+1. huggingface/lerobot
+This repository includes code derived from [huggingface/lerobot] (Copyright 2024 The Hugging Face team), which is licensed under Apache 2.0 License.
+The code reached this repository through the NVIDIA Isaac GR00T N1 LeRobot loader, and the affected files therefore carry the notice
+"SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved." together with an Apache-2.0 identifier.
+Affected files: cogwam/data/lerobot/datasets.py, cogwam/data/lerobot/schema.py, cogwam/data/lerobot/video.py,
+cogwam/data/lerobot/transform/base.py, cogwam/data/lerobot/transform/concat.py, cogwam/data/lerobot/transform/state_action.py.
+The full license text is provided in "LICENSE-Apache 2.0".
+See the original repository for more details.
+
+2. lebedov/msgpack-numpy
+This repository includes code derived from [lebedov/msgpack-numpy] (Copyright (c) 2013-2022, Lev E. Givon), which is licensed under BSD 3 Clause License.
+Affected files: cogwam/serve/protocol.py (the pack_array / unpack_array numpy array codec).
+The full license text is provided in "LICENSE-BSD 3 Clause".
+See the original repository for more details.
+
+3. OpenVLA / Prismatic Project
+This repository includes code derived from [OpenVLA / Prismatic Project] (Copyright (c) 2024 Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti), which is licensed under MIT License.
+Affected files: cogwam/training/overwatch.py.
+See the original repository for more details.
+
+4. starVLA
+This repository includes code derived from [starVLA] (https://github.com/starVLA/starVLA, Copyright 2025 starVLA community), which is licensed under MIT License.
+starVLA is the direct upstream of this repository: the files listed in sections 1 to 3 were ported through it, and it is the origin of
+cogwam/serve/protocol.py's WebSocket policy server and client.
+Per-file provenance, including the upstream path and the SHA-256 of the revision each file was ported from, is recorded in UPSTREAM_SOURCES.json.
+See the original repository for more details.
+
+5. openpi
+This repository includes code derived from [openpi] (https://github.com/Physical-Intelligence/openpi, Copyright Physical Intelligence), which is licensed under Apache 2.0 License.
+The WebSocket policy server/client and the msgpack-numpy array codec in cogwam/serve/protocol.py reached this repository through starVLA, which ported them from openpi.
+The full license text is provided in "LICENSE-Apache 2.0".
+See the original repository for more details.
+
+--------------------------------------------------------------------------------
+
+Model weights
+
+This repository does not redistribute model weights for its two backbone dependencies. They carry their own terms:
+
+  * RynnBrain1.1-2B - Apache-2.0, published by Alibaba DAMO Academy.
+  * DINOv3 ViT-B/16 - Meta's `dinov3-license`, distributed through a gated Hugging Face repository.
+    You must accept Meta's terms yourself before downloading. It is NOT an open-source license and
+    the weights may not be mirrored by this project.
+
+See docs/environment.md for download instructions.
+
+--------------------------------------------------------------------------------
+
+In addition to this file, individual source files or directories may include their own attribution and license notices where required.
+Users of this repository are responsible for complying with the applicable licenses of all included third-party components.
