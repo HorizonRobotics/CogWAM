@@ -410,6 +410,19 @@ section:nth-of-type(even) {
 
 .idea-statement strong { color: var(--accent-dark); }
 
+/* Idea - Method Overview Video */
+.idea-video {
+  max-width: 960px;
+  margin: 36px auto 0;
+}
+
+.idea-video figcaption {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
 /* ---------- Method ---------- */
 
 .method-figure {
